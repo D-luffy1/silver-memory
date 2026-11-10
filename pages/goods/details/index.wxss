@@ -1,0 +1,489 @@
+page {
+  background: #f5f6f8;
+}
+
+.dt {
+  min-height: 100vh;
+}
+
+/* ---------- 轮播 ---------- */
+.dt__media {
+  --td-swiper-radius: 0;
+  background: #fff;
+}
+
+/* ---------- 通用卡片 ---------- */
+.dt__card {
+  margin: 20rpx 24rpx 0;
+  padding: 28rpx 30rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 6rpx 24rpx rgba(17, 24, 32, 0.05);
+}
+
+.dt__card--main {
+  margin-top: -32rpx;
+  position: relative;
+  z-index: 2;
+  padding-bottom: 20rpx;
+}
+
+.dt__section-title {
+  position: relative;
+  padding-left: 18rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1f2329;
+}
+
+.dt__section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 28rpx;
+  border-radius: 4rpx;
+  background: linear-gradient(180deg, #ff5f15, #ff9b4d);
+}
+
+/* ---------- 价格 ---------- */
+.dt__price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.dt__price {
+  display: flex;
+  align-items: baseline;
+}
+
+.dt__price-num {
+  font-size: 64rpx;
+  font-weight: 700;
+  line-height: 1;
+  color: #ff4b2b;
+  font-family: DIN Alternate, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.dt__price-unit {
+  margin-left: 8rpx;
+  font-size: 28rpx;
+  color: #ff4b2b;
+}
+
+.dt__unit-price {
+  padding: 6rpx 18rpx;
+  font-size: 22rpx;
+  color: #d96a2b;
+  background: #fff3ec;
+  border-radius: 24rpx;
+}
+
+.dt__title-row {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.dt__title {
+  flex: 1;
+  min-width: 0;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1f2329;
+  line-height: 50rpx;
+}
+
+.dt__cat {
+  flex-shrink: 0;
+  margin-left: 16rpx;
+  padding: 6rpx 18rpx;
+  font-size: 22rpx;
+  color: #fff;
+  line-height: 32rpx;
+  border-radius: 8rpx;
+  background: linear-gradient(90deg, #ff5f15, #ff8b3d);
+}
+
+/* ---------- 参数四宫格 ---------- */
+.dt__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 24rpx;
+  padding: 22rpx 0;
+  border-top: 1rpx solid #f2f4f7;
+  border-bottom: 1rpx solid #f2f4f7;
+}
+
+.dt__metric {
+  width: 25%;
+  text-align: center;
+}
+
+.dt__metric-v {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1f2329;
+  line-height: 40rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dt__metric-l {
+  display: block;
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #9aa2ad;
+}
+
+/* ---------- 操作行 ---------- */
+.dt__ops {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.dt__op {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 72rpx;
+  margin-right: 16rpx;
+  font-size: 24rpx;
+  color: #4e5969;
+  background: #f7f8fa;
+  border-radius: 36rpx;
+}
+
+.dt__op:last-child {
+  margin-right: 0;
+}
+
+.dt__op text {
+  margin-left: 8rpx;
+}
+
+.dt__op.is-on {
+  color: #ff5f15;
+  background: #fff3ec;
+}
+
+/* button 元素需要重置默认样式 */
+.dt__op--share {
+  padding: 0;
+  line-height: 72rpx;
+  border-radius: 36rpx;
+  background: #f7f8fa;
+  font-size: 24rpx;
+}
+
+.dt__op--share::after {
+  border: none;
+}
+
+/* ---------- 地址 ---------- */
+.dt__addr {
+  display: flex;
+  align-items: center;
+}
+
+.dt__addr-body {
+  flex: 1;
+  min-width: 0;
+  margin: 0 16rpx;
+}
+
+.dt__addr-text {
+  display: block;
+  font-size: 28rpx;
+  color: #1f2329;
+  line-height: 40rpx;
+}
+
+.dt__addr-hint {
+  display: block;
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #9aa2ad;
+}
+
+/* ---------- 亮点标签 ---------- */
+.dt__tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dt__tag {
+  margin: 0 16rpx 16rpx 0;
+  padding: 8rpx 22rpx;
+  font-size: 24rpx;
+  color: #d96a2b;
+  background: #fff3ec;
+  border-radius: 8rpx;
+}
+
+/* ---------- 房东电话 ---------- */
+.dt__phone-locked {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 24rpx;
+  background: #f7f8fa;
+  border-radius: 16rpx;
+}
+
+.dt__phone-locked-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.dt__phone-mask {
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+  color: #86909c;
+  white-space: nowrap;
+}
+
+.dt__phone-note {
+  margin-top: 6rpx;
+  font-size: 20rpx;
+  color: #9aa2ad;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* 做成实心胶囊，比一行橙色文字更像可点的按钮 */
+.dt__phone-btn {
+  flex-shrink: 0;
+  margin-left: 20rpx;
+  padding: 12rpx 30rpx;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 32rpx;
+  border-radius: 32rpx;
+  background: linear-gradient(90deg, #ff5f15, #ff8b3d);
+}
+
+.dt__phone-unlocked {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 24rpx;
+  background: #fff7f2;
+  border-radius: 16rpx;
+}
+
+.dt__phone-number {
+  font-size: 34rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+  color: #1f2329;
+}
+
+.dt__phone-call {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 26rpx;
+  font-size: 24rpx;
+  color: #fff;
+  border-radius: 28rpx;
+  background: linear-gradient(90deg, #ff5f15, #ff8b3d);
+}
+
+.dt__phone-call text {
+  margin-left: 6rpx;
+}
+
+/* ---------- 描述 ---------- */
+.dt__desc {
+  font-size: 28rpx;
+  color: #4e5969;
+  line-height: 46rpx;
+  max-height: 184rpx;
+  overflow: hidden;
+}
+
+.dt__desc.is-expand {
+  max-height: none;
+}
+
+.dt__desc-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #ff5f15;
+}
+
+/* ---------- 相似房源 ---------- */
+.dt__similar {
+  margin: 24rpx 24rpx 0;
+  padding: 26rpx 0 24rpx 24rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 6rpx 24rpx rgba(17, 24, 32, 0.05);
+}
+
+.dt__scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+/* ---------- 底部留白 + 吸底栏 ---------- */
+.dt__placeholder {
+  height: 160rpx;
+}
+
+.dt__bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx;
+  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 -4rpx 20rpx rgba(17, 24, 32, 0.06);
+}
+
+.dt__bar-fav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 108rpx;
+}
+
+.dt__bar-fav-text {
+  margin-top: 2rpx;
+  font-size: 20rpx;
+  color: #86909c;
+}
+
+.dt__bar-btn {
+  flex: 1;
+  height: 84rpx;
+  line-height: 84rpx;
+  margin-left: 16rpx;
+  text-align: center;
+  font-size: 30rpx;
+  border-radius: 42rpx;
+}
+
+.dt__bar-btn--ghost {
+  flex: 0 0 200rpx;
+  color: #ff5f15;
+  border: 1rpx solid #ffb688;
+  background: #fff3ec;
+}
+
+.dt__bar-btn--primary {
+  color: #fff;
+  font-weight: 500;
+  background: linear-gradient(90deg, #ff5f15, #ff8b3d);
+  box-shadow: 0 8rpx 20rpx rgba(255, 95, 21, 0.28);
+}
+
+/* ---------- 状态 ---------- */
+.dt__state {
+  padding: 160rpx 0;
+  text-align: center;
+  color: #86909c;
+}
+
+.dt__state-btn {
+  display: inline-block;
+  margin-top: 24rpx;
+  padding: 0 40rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  font-size: 26rpx;
+  color: #fff;
+  border-radius: 34rpx;
+  background: linear-gradient(90deg, #ff5f15, #ff8b3d);
+}
+
+/* ---------- 密码弹窗 ---------- */
+.pwd-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.pwd-dialog {
+  width: 600rpx;
+  padding: 44rpx 36rpx 32rpx;
+  background: #fff;
+  border-radius: 24rpx;
+}
+
+.pwd-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1f2329;
+  text-align: center;
+}
+
+.pwd-sub {
+  margin-top: 8rpx;
+  margin-bottom: 28rpx;
+  font-size: 22rpx;
+  color: #9aa2ad;
+  text-align: center;
+}
+
+.pwd-input {
+  height: 84rpx;
+  padding: 0 24rpx;
+  margin-bottom: 32rpx;
+  font-size: 28rpx;
+  color: #1f2329;
+  background: #f5f6f8;
+  border-radius: 16rpx;
+  box-sizing: border-box;
+}
+
+.pwd-btns {
+  display: flex;
+}
+
+.pwd-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 40rpx;
+}
+
+.pwd-btn--cancel {
+  margin-right: 24rpx;
+  color: #4e5969;
+  background: #f5f6f8;
+}
+
+.pwd-btn--confirm {
+  color: #fff;
+  background: linear-gradient(90deg, #ff5f15, #ff8b3d);
+}

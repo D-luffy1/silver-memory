@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "房源列表",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "light",
+  "onReachBottomDistance": 120,
+  "usingComponents": {
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-empty": "tdesign-miniprogram/empty/empty",
+    "t-popup": "tdesign-miniprogram/popup/popup",
+    "property-list": "/components/property-list/index"
+  }
+}

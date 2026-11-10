@@ -1,0 +1,169 @@
+page {
+  background: #f5f6f8;
+}
+
+.mc {
+  min-height: 100vh;
+  padding-bottom: 60rpx;
+}
+
+/* ---------- 顶部切换 ---------- */
+.mc__tabs {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  background: #fff;
+  box-shadow: 0 6rpx 20rpx rgba(17, 24, 32, 0.05);
+}
+
+.mc__tab {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 26rpx 0;
+  font-size: 28rpx;
+  color: #6b7280;
+}
+
+.mc__tab-text {
+  margin-left: 10rpx;
+}
+
+.mc__tab.is-on {
+  color: #ff5f15;
+  font-weight: 600;
+}
+
+.mc__tab.is-on::after {
+  position: absolute;
+  bottom: 8rpx;
+  left: 50%;
+  width: 48rpx;
+  height: 6rpx;
+  margin-left: -24rpx;
+  border-radius: 4rpx;
+  background: linear-gradient(90deg, #ff5f15, #ff8b3d);
+  content: '';
+}
+
+/* ---------- 统计行 ---------- */
+.mc__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 24rpx 4rpx;
+}
+
+.mc__summary-left {
+  display: flex;
+  align-items: baseline;
+}
+
+.mc__summary-num {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1f2329;
+  font-family: DIN Alternate, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.mc__summary-unit {
+  margin-left: 6rpx;
+  font-size: 22rpx;
+  color: #9aa2ad;
+}
+
+.mc__summary-op {
+  display: flex;
+  align-items: center;
+  padding: 8rpx 20rpx;
+  background: #fff;
+  border-radius: 26rpx;
+  box-shadow: 0 4rpx 14rpx rgba(17, 24, 32, 0.05);
+}
+
+.mc__summary-op-text {
+  margin-left: 6rpx;
+  font-size: 22rpx;
+  color: #6b7280;
+}
+
+/* ---------- 失效记录提示 ---------- */
+.mc__invalid {
+  display: flex;
+  align-items: center;
+  margin: 20rpx 24rpx 0;
+  padding: 16rpx 20rpx;
+  background: #fff8ec;
+  border-radius: 16rpx;
+}
+
+.mc__invalid-text {
+  flex: 1;
+  margin-left: 10rpx;
+  font-size: 22rpx;
+  color: #a86a17;
+}
+
+.mc__invalid-op {
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #ff5f15;
+}
+
+/* ---------- 列表主体 ---------- */
+.mc__body {
+  padding: 20rpx 24rpx 0;
+}
+
+.mc__empty {
+  padding: 60rpx 0 40rpx;
+  text-align: center;
+}
+
+.mc__btn {
+  display: inline-block;
+  margin-top: 24rpx;
+  padding: 16rpx 52rpx;
+  font-size: 26rpx;
+  color: #fff;
+  border-radius: 36rpx;
+  background: linear-gradient(90deg, #ff5f15, #ff8b3d);
+  box-shadow: 0 8rpx 20rpx rgba(255, 95, 21, 0.25);
+}
+
+.mc__empty-tip {
+  margin-top: 24rpx;
+  font-size: 20rpx;
+  color: #b6bcc6;
+}
+
+.mc__state {
+  padding: 40rpx 0;
+  text-align: center;
+}
+
+/* ---------- 占位骨架 ---------- */
+.mc__skeleton {
+  padding-top: 4rpx;
+}
+
+.mc__sk {
+  height: 196rpx;
+  margin-bottom: 16rpx;
+  border-radius: 20rpx;
+  background: linear-gradient(90deg, #f2f4f7 25%, #e9edf2 37%, #f2f4f7 63%);
+  background-size: 400% 100%;
+  animation: mc-sk 1.4s ease infinite;
+}
+
+@keyframes mc-sk {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

@@ -1,0 +1,109 @@
+<view class="home">
+  <!-- 品牌头部 -->
+  <view class="home__hero">
+    <view class="home__brand">
+      <view class="home__brand-title">优选房源</view>
+      <view class="home__brand-sub">内部房源展示 · {{isDemo ? '演示数据' : '数据实时同步'}}</view>
+    </view>
+
+    <view class="home__search" bind:tap="goToSearch">
+      <t-icon prefix="wr" name="search" size="30rpx" color="#9aa2ad" />
+      <text class="home__search-ph">搜小区名 / 地址 / 户型 / 特色</text>
+    </view>
+
+    <view class="home__stats">
+      <view class="home__stat" wx:for="{{stats}}" wx:key="label">
+        <view class="home__stat-line">
+          <text class="home__stat-num">{{item.value}}</text>
+          <text class="home__stat-unit">{{item.unit}}</text>
+        </view>
+        <text class="home__stat-label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{failed}}" class="home__state">
+    <t-empty description="房源数据加载失败" />
+    <view class="home__state-btn" bind:tap="onRetry">重新加载</view>
+  </view>
+
+  <block wx:else>
+    <!-- 分类入口 -->
+    <view class="home__cats">
+      <view
+        class="home__cat"
+        wx:for="{{categories}}"
+        wx:key="value"
+        data-value="{{item.value}}"
+        bind:tap="goToListByCategory"
+      >
+        <view class="home__cat-icon home__cat-icon--{{index}}">
+          <t-icon prefix="wr" name="{{item.icon}}" size="36rpx" color="#fff" />
+        </view>
+        <text class="home__cat-label">{{item.label}}</text>
+        <text class="home__cat-count">{{item.count}} 套</text>
+      </view>
+      <view class="home__cat" bind:tap="goToList">
+        <view class="home__cat-icon home__cat-icon--more">
+          <t-icon prefix="wr" name="list" size="36rpx" color="#fff" />
+        </view>
+        <text class="home__cat-label">全部</text>
+        <text class="home__cat-count">筛选</text>
+      </view>
+    </view>
+
+    <!-- 加载骨架 -->
+    <view wx:if="{{loading}}" class="home__loading">
+      <t-loading theme="circular" size="40rpx" text="正在加载房源..." inherit-color />
+      <view class="home__sk-line home__sk-line--lg"></view>
+      <view class="home__sk-row">
+        <view class="home__sk-card"></view>
+        <view class="home__sk-card"></view>
+      </view>
+    </view>
+
+    <block wx:else>
+      <!-- 精选轮播 -->
+      <view class="home__swiper-wrap" wx:if="{{imgSrcs.length}}">
+        <t-swiper
+          list="{{imgSrcs}}"
+          current="{{current}}"
+          autoplay="{{autoplay}}"
+          duration="{{duration}}"
+          interval="{{interval}}"
+          navigation="{{navigation}}"
+          height="320rpx"
+          bind:click="onSwiperTap"
+        />
+      </view>
+
+      <!-- 最新上架 -->
+      <view class="home__section" wx:if="{{latest.length}}">
+        <view class="home__section-head">
+          <text class="home__section-title">最新上架</text>
+          <view class="home__section-more" bind:tap="goToList">
+            <text>全部房源</text>
+            <t-icon prefix="wr" name="arrow_right" size="24rpx" color="#9aa2ad" />
+          </view>
+        </view>
+        <scroll-view class="home__scroll" scroll-x enable-flex>
+          <property-list list="{{latest}}" variant="slide" bind:click="gotoDetail" bind:thumb="previewImages" />
+        </scroll-view>
+      </view>
+
+      <!-- 优选推荐 -->
+      <view class="home__section" wx:if="{{recommended.length}}">
+        <view class="home__section-head">
+          <text class="home__section-title">优选推荐</text>
+          <text class="home__section-desc">共 {{stats[0].value}} 套在库房源</text>
+        </view>
+        <property-list list="{{recommended}}" variant="grid" bind:click="gotoDetail" bind:thumb="previewImages" />
+      </view>
+
+      <view class="home__empty" wx:if="{{!latest.length && !recommended.length}}">
+        <t-empty description="暂无房源数据" />
+        <view class="home__state-btn" bind:tap="onRetry">刷新试试</view>
+      </view>
+    </block>
+  </block>
+</view>

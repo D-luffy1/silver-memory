@@ -1,0 +1,16 @@
+<view class="pl pl--{{variant}} wr-class">
+  <property-card
+    wx:for="{{list}}"
+    wx:key="_id"
+    class="pl__item"
+    data="{{item}}"
+    variant="{{variant}}"
+    show-favorite="{{showFavorite}}"
+    action-text="{{actionText}}"
+    extra="{{item.extra}}"
+    bind:click="onCardClick"
+    bind:thumb="onCardThumb"
+    bind:favorite="onCardFavorite"
+    bind:action="onCardAction"
+  />
+</view>

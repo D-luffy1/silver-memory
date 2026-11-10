@@ -1,0 +1,76 @@
+<view class="mc">
+  <!-- 切换：收藏 / 历史 -->
+  <view class="mc__tabs">
+    <view
+      class="mc__tab {{tab === 'favorite' ? 'is-on' : ''}}"
+      data-tab="favorite"
+      bind:tap="onTabChange"
+    >
+      <t-icon prefix="wr" name="star_filled" size="26rpx" color="{{tab === 'favorite' ? '#ff5f15' : '#b6bcc6'}}" />
+      <text class="mc__tab-text">我的收藏</text>
+    </view>
+    <view
+      class="mc__tab {{tab === 'history' ? 'is-on' : ''}}"
+      data-tab="history"
+      bind:tap="onTabChange"
+    >
+      <t-icon prefix="wr" name="indent_time" size="26rpx" color="{{tab === 'history' ? '#ff5f15' : '#b6bcc6'}}" />
+      <text class="mc__tab-text">浏览历史</text>
+    </view>
+  </view>
+
+  <!-- 统计与批量操作 -->
+  <view class="mc__summary" wx:if="{{!loading && list.length}}">
+    <view class="mc__summary-left">
+      <text class="mc__summary-num">{{list.length}}</text>
+      <text class="mc__summary-unit">{{tab === 'favorite' ? '套收藏' : '条记录'}}</text>
+    </view>
+    <view class="mc__summary-op" wx:if="{{tab === 'history'}}" bind:tap="onClearHistory">
+      <t-icon prefix="wr" name="delete" size="24rpx" color="#9aa2ad" />
+      <text class="mc__summary-op-text">清空</text>
+    </view>
+  </view>
+
+  <!-- 失效记录提示：房源下架后本地记录不会自动消失 -->
+  <view class="mc__invalid" wx:if="{{invalidCount}}">
+    <t-icon prefix="wr" name="alarm" size="24rpx" color="#e6a23c" />
+    <text class="mc__invalid-text">有 {{invalidCount}} 套房源已下架</text>
+    <text class="mc__invalid-op" bind:tap="onCleanInvalid">清除记录</text>
+  </view>
+
+  <view class="mc__body">
+    <!-- 加载失败 -->
+    <view wx:if="{{failed}}" class="mc__state">
+      <t-empty description="加载失败" />
+      <view class="mc__btn" bind:tap="loadList">重新加载</view>
+    </view>
+
+    <block wx:else>
+      <!-- 首屏占位 -->
+      <view wx:if="{{loading && !list.length}}" class="mc__skeleton">
+        <view class="mc__sk" wx:for="{{[1,2,3]}}" wx:key="*this"></view>
+      </view>
+
+      <block wx:else>
+        <property-list
+          wx:if="{{list.length}}"
+          list="{{list}}"
+          variant="row"
+          action-text="{{tab === 'history' ? '删除' : ''}}"
+          bind:click="gotoDetail"
+          bind:thumb="previewImages"
+          bind:favorite="onFavoriteChange"
+          bind:action="onItemDelete"
+        />
+
+        <view class="mc__empty" wx:if="{{!list.length}}">
+          <t-empty
+            description="{{tab === 'favorite' ? '还没有收藏房源' : '还没有浏览记录'}}"
+          />
+          <view class="mc__btn" bind:tap="gotoList">去逛房源</view>
+          <view class="mc__empty-tip">收藏与浏览记录只保存在本机，清除小程序缓存后会丢失</view>
+        </view>
+      </block>
+    </block>
+  </view>
+</view>

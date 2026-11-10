@@ -1,0 +1,273 @@
+.pc {
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 6rpx 24rpx rgba(17, 24, 32, 0.06);
+  font-size: 24rpx;
+}
+
+.pc__media {
+  position: relative;
+  width: 100%;
+  height: 220rpx;
+  background: #f2f4f7;
+}
+
+.pc__media--row {
+  width: 208rpx;
+  height: 156rpx;
+  flex-shrink: 0;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.pc__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pc__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 22rpx;
+  color: #c2c8d1;
+  background: linear-gradient(135deg, #f4f6f9, #eceff3);
+}
+
+.pc__badge {
+  position: absolute;
+  top: 14rpx;
+  left: 14rpx;
+  padding: 4rpx 14rpx;
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 30rpx;
+  border-radius: 6rpx;
+  background: linear-gradient(90deg, #ff5f15, #ff8b3d);
+  box-shadow: 0 4rpx 10rpx rgba(255, 95, 21, 0.3);
+}
+
+.pc__count {
+  position: absolute;
+  right: 14rpx;
+  bottom: 14rpx;
+  padding: 2rpx 12rpx;
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 30rpx;
+  border-radius: 20rpx;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.pc__body {
+  display: flex;
+  flex-direction: column;
+  padding: 18rpx 20rpx 20rpx;
+}
+
+.pc__body--row {
+  flex: 1;
+  min-width: 0;
+  padding: 6rpx 0 6rpx 20rpx;
+}
+
+.pc__title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1f2329;
+  line-height: 40rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pc__title--clamp {
+  font-size: 28rpx;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  max-height: 80rpx;
+  line-height: 40rpx;
+}
+
+.pc__specs {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #6b7280;
+  line-height: 32rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pc__addr {
+  display: flex;
+  align-items: center;
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: #9aa2ad;
+  overflow: hidden;
+}
+
+.pc__addr-text {
+  margin-left: 6rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pc__tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12rpx;
+  height: 36rpx;
+  overflow: hidden;
+}
+
+.pc__tag {
+  margin: 0 8rpx 6rpx 0;
+  padding: 2rpx 12rpx;
+  font-size: 20rpx;
+  line-height: 28rpx;
+  color: #d96a2b;
+  background: #fff3ec;
+  border-radius: 6rpx;
+  white-space: nowrap;
+}
+
+.pc__foot {
+  display: flex;
+  align-items: baseline;
+  margin-top: 14rpx;
+}
+
+.pc__foot--row {
+  margin-top: auto;
+  align-items: center;
+}
+
+.pc__price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* 数字和单位是不可拆的整体，窄卡片下宁可整体换行也不能变成竖排 */
+.pc__price-main {
+  display: flex;
+  align-items: baseline;
+  flex: 0 0 auto;
+}
+
+.pc__price-num {
+  flex-shrink: 0;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #ff4b2b;
+  line-height: 1;
+  white-space: nowrap;
+  font-family: DIN Alternate, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.pc__price-unit {
+  flex-shrink: 0;
+  margin-left: 4rpx;
+  font-size: 22rpx;
+  color: #ff4b2b;
+  white-space: nowrap;
+}
+
+.pc__unit-price {
+  margin-left: 12rpx;
+  font-size: 20rpx;
+  color: #9aa2ad;
+  white-space: nowrap;
+}
+
+.pc__fav {
+  margin-left: auto;
+  padding: 4rpx 0 0 16rpx;
+  line-height: 1;
+}
+
+.pc__fav--row {
+  padding: 8rpx 0 8rpx 16rpx;
+}
+
+.pc__extra {
+  margin-left: auto;
+  font-size: 20rpx;
+  color: #9aa2ad;
+  white-space: nowrap;
+}
+
+.pc__action {
+  margin-left: 16rpx;
+  padding: 8rpx 22rpx;
+  font-size: 22rpx;
+  color: #fff;
+  line-height: 30rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(90deg, #ff5f15, #ff8b3d);
+}
+
+/* 双列卡片：宽度由 property-list 的宿主节点控制，内部占满即可 */
+.pc--grid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 16rpx;
+}
+
+.pc--grid .pc__media {
+  flex-shrink: 0;
+}
+
+.pc--grid .pc__body {
+  flex: 1;
+}
+
+/* 同行两张卡片等高后，价格统一贴底，避免有无单价造成参差 */
+.pc--grid .pc__foot {
+  margin-top: auto;
+  padding-top: 14rpx;
+}
+
+/* 双列窄卡片放不下“总价 + 单价”，让单价自己占一行 */
+.pc--grid .pc__unit-price {
+  width: 100%;
+  margin-left: 0;
+}
+
+/* 首页横滑卡片 */
+.pc--slide {
+  width: 300rpx;
+  flex-shrink: 0;
+  margin-right: 16rpx;
+}
+
+.pc--slide .pc__media {
+  height: 200rpx;
+}
+
+.pc--slide .pc__body {
+  padding: 16rpx 18rpx 18rpx;
+}
+
+/* 横向紧凑卡片 */
+.pc--row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  margin-bottom: 16rpx;
+  width: 100%;
+}

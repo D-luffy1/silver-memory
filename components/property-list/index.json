@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "property-card": "/components/property-card/index"
+  }
+}

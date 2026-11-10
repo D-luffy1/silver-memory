@@ -1,0 +1,38 @@
+/*
+ * 列表容器只负责排布，卡片宽度统一在这里给到宿主节点。
+ * 自定义组件宿主默认 display: inline，inline 上写 width 无效；
+ * 宽度写在组件内部的 view 上又会因宿主 shrink-to-fit 算不出父宽而塌陷，
+ * 所以必须 display: block + 宿主宽度，组件内部一律 width: 100%。
+ */
+.pl__item {
+  display: block;
+}
+
+.pl--grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.pl--grid .pl__item {
+  width: calc(50% - 8rpx);
+}
+
+.pl--row {
+  display: block;
+}
+
+.pl--row .pl__item {
+  width: 100%;
+}
+
+/* 横滑形态：配合外层 scroll-view 的 white-space: nowrap 使用 */
+.pl--slide {
+  display: inline-flex;
+  flex-flow: row nowrap;
+}
+
+.pl--slide .pl__item {
+  width: auto;
+  flex-shrink: 0;
+}

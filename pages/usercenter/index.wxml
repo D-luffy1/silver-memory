@@ -1,0 +1,86 @@
+<view class="uc">
+  <view class="uc__hero">
+    <view class="uc__profile">
+      <button class="uc__avatar-btn" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <image class="uc__avatar" src="{{userInfo.avatarUrl || defaultAvatar}}" mode="aspectFill" />
+      </button>
+      <view class="uc__profile-body">
+        <input
+          class="uc__nick"
+          type="nickname"
+          placeholder="点击设置昵称"
+          placeholder-class="uc__nick-ph"
+          value="{{userInfo.nickName}}"
+          bindblur="onNickChange"
+          bindconfirm="onNickChange"
+        />
+        <text class="uc__desc">内部房源展示 · 同事版</text>
+      </view>
+    </view>
+
+    <view class="uc__counts">
+      <view class="uc__count" data-tab="favorite" bind:tap="gotoCollection">
+        <text class="uc__count-num">{{counts.favorite}}</text>
+        <text class="uc__count-label">我的收藏</text>
+      </view>
+      <view class="uc__count" data-tab="history" bind:tap="gotoCollection">
+        <text class="uc__count-num">{{counts.history}}</text>
+        <text class="uc__count-label">浏览记录</text>
+      </view>
+      <view class="uc__count" bind:tap="gotoList">
+        <text class="uc__count-num">{{counts.property}}</text>
+        <text class="uc__count-label">在库房源</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="uc__menu">
+    <view class="uc__cell" data-tab="favorite" bind:tap="gotoCollection">
+      <view class="uc__cell-icon uc__cell-icon--0">
+        <t-icon prefix="wr" name="star_filled" size="30rpx" color="#fff" />
+      </view>
+      <text class="uc__cell-title">我的收藏</text>
+      <text class="uc__cell-note">{{counts.favorite}} 套</text>
+      <t-icon prefix="wr" name="arrow_right" size="26rpx" color="#c9c9c9" />
+    </view>
+
+    <view class="uc__cell" data-tab="history" bind:tap="gotoCollection">
+      <view class="uc__cell-icon uc__cell-icon--1">
+        <t-icon prefix="wr" name="indent_time" size="30rpx" color="#fff" />
+      </view>
+      <text class="uc__cell-title">浏览历史</text>
+      <text class="uc__cell-note">{{counts.history}} 条</text>
+      <t-icon prefix="wr" name="arrow_right" size="26rpx" color="#c9c9c9" />
+    </view>
+
+    <view class="uc__cell" bind:tap="gotoList">
+      <view class="uc__cell-icon uc__cell-icon--2">
+        <t-icon prefix="wr" name="cards" size="30rpx" color="#fff" />
+      </view>
+      <text class="uc__cell-title">全部房源</text>
+      <text class="uc__cell-note">筛选 · 排序</text>
+      <t-icon prefix="wr" name="arrow_right" size="26rpx" color="#c9c9c9" />
+    </view>
+  </view>
+
+  <view class="uc__menu">
+    <view class="uc__cell" bind:tap="showAbout">
+      <view class="uc__cell-icon uc__cell-icon--3">
+        <t-icon prefix="wr" name="info" size="30rpx" color="#fff" />
+      </view>
+      <text class="uc__cell-title">关于平台</text>
+      <t-icon prefix="wr" name="arrow_right" size="26rpx" color="#c9c9c9" />
+    </view>
+
+    <view class="uc__cell" bind:tap="clearLocalCache">
+      <view class="uc__cell-icon uc__cell-icon--4">
+        <t-icon prefix="wr" name="delete" size="30rpx" color="#fff" />
+      </view>
+      <text class="uc__cell-title">清空本地记录</text>
+      <text class="uc__cell-note">不影响云端数据</text>
+      <t-icon prefix="wr" name="arrow_right" size="26rpx" color="#c9c9c9" />
+    </view>
+  </view>
+
+  <view class="uc__version">版本 {{versionNo}}</view>
+</view>

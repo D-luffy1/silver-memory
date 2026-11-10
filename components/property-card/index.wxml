@@ -1,0 +1,63 @@
+<block wx:if="{{variant === 'row'}}">
+  <view class="pc pc--row wr-class" bind:tap="clickHandle">
+    <view class="pc__media pc__media--row">
+      <image wx:if="{{property.cover_image && !imgError}}" class="pc__img" src="{{property.cover_image}}" mode="aspectFill" lazy-load binderror="onImgError" />
+      <view wx:else class="pc__placeholder"><text>暂无图</text></view>
+    </view>
+    <view class="pc__body pc__body--row">
+      <view class="pc__title pc__title--clamp">{{property.name}}</view>
+      <view class="pc__specs" wx:if="{{property.specs}}">{{property.specs}}</view>
+      <view class="pc__addr" wx:if="{{property.address}}">
+        <t-icon prefix="wr" name="location" size="22rpx" color="#c4c4c4" />
+        <text class="pc__addr-text">{{property.address}}</text>
+      </view>
+      <view class="pc__foot pc__foot--row">
+        <view class="pc__price">
+          <view class="pc__price-main">
+            <text class="pc__price-num">{{property.priceText}}</text>
+            <text class="pc__price-unit">{{property.priceUnit}}</text>
+          </view>
+        </view>
+        <text class="pc__extra" wx:if="{{extra}}">{{extra}}</text>
+        <view class="pc__action" wx:if="{{actionText}}" catch:tap="onActionTap">{{actionText}}</view>
+        <view class="pc__fav pc__fav--row" wx:if="{{showFavorite}}" catch:tap="onFavoriteTap">
+          <t-icon prefix="wr" name="{{favorited ? 'star_filled' : 'star'}}" size="32rpx" color="{{favorited ? '#FF7A2F' : '#c9c9c9'}}" />
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+<block wx:else>
+  <view class="pc pc--{{variant}} wr-class" bind:tap="clickHandle">
+    <view class="pc__media" bind:tap="clickThumbHandle">
+      <image wx:if="{{property.cover_image && !imgError}}" class="pc__img" src="{{property.cover_image}}" mode="aspectFill" lazy-load binderror="onImgError" />
+      <view wx:else class="pc__placeholder"><text>暂无图</text></view>
+      <view class="pc__badge" wx:if="{{property.categoryLabel}}">{{property.categoryLabel}}</view>
+      <view class="pc__count" wx:if="{{property.images.length > 1}}">{{property.images.length}}图</view>
+    </view>
+    <view class="pc__body">
+      <view class="pc__title">{{property.name}}</view>
+      <view class="pc__specs" wx:if="{{property.specs}}">{{property.specs}}</view>
+      <view class="pc__addr" wx:if="{{property.address}}">
+        <t-icon prefix="wr" name="location" size="22rpx" color="#c4c4c4" />
+        <text class="pc__addr-text">{{property.address}}</text>
+      </view>
+      <view class="pc__tags" wx:if="{{property.tags.length}}">
+        <text class="pc__tag" wx:for="{{property.tags}}" wx:key="index">{{item}}</text>
+      </view>
+      <view class="pc__foot">
+        <view class="pc__price">
+          <view class="pc__price-main">
+            <text class="pc__price-num">{{property.priceText}}</text>
+            <text class="pc__price-unit">{{property.priceUnit}}</text>
+          </view>
+          <text class="pc__unit-price" wx:if="{{property.unitPrice}}">{{property.unitPrice}}元/㎡</text>
+        </view>
+        <view class="pc__fav" wx:if="{{showFavorite}}" catch:tap="onFavoriteTap">
+          <t-icon prefix="wr" name="{{favorited ? 'star_filled' : 'star'}}" size="34rpx" color="{{favorited ? '#FF7A2F' : '#c9c9c9'}}" />
+        </view>
+      </view>
+    </view>
+  </view>
+</block>

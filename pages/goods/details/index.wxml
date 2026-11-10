@@ -1,0 +1,168 @@
+<view class="dt" wx:if="{{property}}">
+  <!-- 图片轮播 -->
+  <view class="dt__media">
+    <t-swiper
+      list="{{property.images}}"
+      current="{{current}}"
+      autoplay="{{true}}"
+      duration="{{duration}}"
+      interval="{{interval}}"
+      navigation="{{navigation}}"
+      height="600rpx"
+      bind:change="onSwiperChange"
+      bind:click="onSwiperTap"
+    />
+  </view>
+
+  <!-- 核心信息 -->
+  <view class="dt__card dt__card--main">
+    <view class="dt__price-row">
+      <view class="dt__price">
+        <text class="dt__price-num">{{property.priceText}}</text>
+        <text class="dt__price-unit">{{property.priceUnit}}</text>
+      </view>
+      <text class="dt__unit-price" wx:if="{{property.unitPrice}}">单价 {{property.unitPrice}} 元/㎡</text>
+    </view>
+
+    <view class="dt__title-row">
+      <text class="dt__title">{{property.name}}</text>
+      <text class="dt__cat">{{property.categoryLabel}}{{isDemo ? ' · 演示' : ''}}</text>
+    </view>
+
+    <view class="dt__metrics" wx:if="{{property.houseType || property.area || property.orientation || property.floor}}">
+      <view class="dt__metric" wx:if="{{property.houseType}}">
+        <text class="dt__metric-v">{{property.houseType}}</text>
+        <text class="dt__metric-l">户型</text>
+      </view>
+      <view class="dt__metric" wx:if="{{property.area}}">
+        <text class="dt__metric-v">{{property.area}}㎡</text>
+        <text class="dt__metric-l">建筑面积</text>
+      </view>
+      <view class="dt__metric" wx:if="{{property.orientation}}">
+        <text class="dt__metric-v">{{property.orientation}}</text>
+        <text class="dt__metric-l">朝向</text>
+      </view>
+      <view class="dt__metric" wx:if="{{property.floor}}">
+        <text class="dt__metric-v">{{property.floor}}</text>
+        <text class="dt__metric-l">楼层</text>
+      </view>
+    </view>
+
+    <view class="dt__ops">
+      <view class="dt__op {{favorited ? 'is-on' : ''}}" bind:tap="onFavoriteTap">
+        <t-icon prefix="wr" name="{{favorited ? 'star_filled' : 'star'}}" size="30rpx" color="{{favorited ? '#ff5f15' : '#86909c'}}" />
+        <text>{{favorited ? '已收藏' : '收藏'}}</text>
+      </view>
+      <view class="dt__op" bind:tap="previewImages">
+        <t-icon prefix="wr" name="picture_filled" size="30rpx" color="#86909c" />
+        <text>大图 {{property.images.length}}张</text>
+      </view>
+      <button class="dt__op dt__op--share" open-type="share">
+        <t-icon prefix="wr" name="share" size="30rpx" color="#86909c" />
+        <text>分享</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 地址 -->
+  <view class="dt__card" wx:if="{{property.address}}">
+    <view class="dt__addr" bind:tap="copyAddress">
+      <t-icon prefix="wr" name="location" size="32rpx" color="#ff5f15" />
+      <view class="dt__addr-body">
+        <text class="dt__addr-text">{{property.address}}</text>
+        <text class="dt__addr-hint">点击复制完整地址</text>
+      </view>
+      <t-icon prefix="wr" name="copy" size="30rpx" color="#c4c9d1" />
+    </view>
+  </view>
+
+  <!-- 房源亮点 -->
+  <view class="dt__card" wx:if="{{property.tags.length}}">
+    <view class="dt__section-title">房源亮点</view>
+    <view class="dt__tags">
+      <text class="dt__tag" wx:for="{{property.tags}}" wx:key="index">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 房东电话 -->
+  <view class="dt__card" wx:if="{{property.phone}}">
+    <view class="dt__section-title">房东电话</view>
+    <view wx:if="{{!phoneVisible}}" class="dt__phone-locked" bind:tap="onPhoneTap">
+      <view class="dt__phone-locked-main">
+        <text class="dt__phone-mask">{{phoneMask}}</text>
+        <text class="dt__phone-note">查看完整号码需要输入口令</text>
+      </view>
+      <view class="dt__phone-btn">查看</view>
+    </view>
+    <view wx:else class="dt__phone-unlocked">
+      <text class="dt__phone-number">{{property.phone}}</text>
+      <view class="dt__phone-call" bind:tap="callPhone">
+        <t-icon prefix="wr" name="telephone" size="26rpx" color="#fff" />
+        <text>拨打</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 房源描述 -->
+  <view class="dt__card" wx:if="{{property.desc}}">
+    <view class="dt__section-title">房源描述</view>
+    <view class="dt__desc {{descExpanded ? 'is-expand' : ''}}">{{property.desc}}</view>
+    <view class="dt__desc-toggle" wx:if="{{property.desc.length > 60}}" bind:tap="onDescToggle">
+      {{descExpanded ? '收起' : '展开全文'}}
+      <t-icon prefix="wr" name="{{descExpanded ? 'expand_less' : 'expand_more_s'}}" size="24rpx" color="#ff5f15" />
+    </view>
+  </view>
+
+  <!-- 相似房源 -->
+  <view class="dt__similar" wx:if="{{similar.length}}">
+    <view class="dt__section-title">相似房源</view>
+    <scroll-view class="dt__scroll" scroll-x enable-flex>
+      <property-list list="{{similar}}" variant="slide" show-favorite="{{false}}" bind:click="gotoSimilarDetail" />
+    </scroll-view>
+  </view>
+
+  <view class="dt__placeholder"></view>
+
+  <!-- 吸底操作栏 -->
+  <view class="dt__bar">
+    <view class="dt__bar-fav" bind:tap="onFavoriteTap">
+      <t-icon prefix="wr" name="{{favorited ? 'star_filled' : 'star'}}" size="36rpx" color="{{favorited ? '#ff5f15' : '#86909c'}}" />
+      <text class="dt__bar-fav-text">{{favorited ? '已收藏' : '收藏'}}</text>
+    </view>
+    <view class="dt__bar-btn dt__bar-btn--ghost" bind:tap="goToList">更多房源</view>
+    <view class="dt__bar-btn dt__bar-btn--primary" bind:tap="onContactTap">咨询看房</view>
+  </view>
+</view>
+
+<!-- 加载态 -->
+<view wx:elif="{{loading}}" class="dt__state">
+  <t-loading theme="circular" size="44rpx" text="正在加载房源..." inherit-color />
+</view>
+
+<!-- 失败态 -->
+<view wx:else class="dt__state">
+  <t-empty description="房源信息加载失败" />
+  <view class="dt__state-btn" bind:tap="onRetry">重新加载</view>
+</view>
+
+<!-- 密码输入弹窗 -->
+<view wx:if="{{showPasswordDialog}}" class="pwd-mask" bindtap="onPhoneCancel">
+  <view class="pwd-dialog" catch:tap="noop">
+    <view class="pwd-title">输入密码查看房东电话</view>
+    <view class="pwd-sub">号码涉及隐私，请谨慎使用</view>
+    <input
+      class="pwd-input"
+      type="text"
+      password="{{true}}"
+      placeholder="请输入查看密码"
+      value="{{phonePassword}}"
+      bindinput="onPhoneInput"
+      bindconfirm="onPhoneConfirm"
+      focus="{{true}}"
+    />
+    <view class="pwd-btns">
+      <view class="pwd-btn pwd-btn--cancel" bindtap="onPhoneCancel">取消</view>
+      <view class="pwd-btn pwd-btn--confirm" bindtap="onPhoneConfirm">确认</view>
+    </view>
+  </view>
+</view>

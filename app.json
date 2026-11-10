@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/goods/list/index",
+    "pages/goods/details/index",
+    "pages/usercenter/index",
+    "pages/usercenter/my-collection/index"
+  ],
+  "entryPagePath": "pages/home/home",
+  "tabBar": {
+    "custom": true,
+    "color": "#666666",
+    "selectedColor": "#FF5F15",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/goods/list/index",
+        "text": "房源"
+      },
+      {
+        "pagePath": "pages/usercenter/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#f5f6f8",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "优选房源",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}
